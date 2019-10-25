@@ -6427,7 +6427,12 @@ jexcel.keyDownControls = function(e) {
                 }
                 e.preventDefault();
             } else {
-                if ((e.ctrlKey || e.metaKey) && ! e.shiftKey) {
+                /**fix for MacOS */
+                if(e.metaKey && e.shiftKey && e.which == 90) {
+                    jexcel.current.redo();
+                    e.preventDefault();
+                }
+                else if ((e.ctrlKey || e.metaKey) && ! e.shiftKey) {
                     if (e.which == 65) {
                         // Ctrl + A
                         jexcel.current.selectAll();
