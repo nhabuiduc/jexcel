@@ -3,11 +3,14 @@
 if ($handle = opendir('js')) {
     $js = '';
     $css = '';
-    while (false !== ($entry = readdir($handle))) {
-        if ($entry != "." && $entry != ".." && (! isset($modules) || in_array(substr($entry, 0, strpos($entry, '.')), $modules))) {
-            $js .= file_get_contents('js/'.$entry) . "\r\n\r\n";
-        }
-    }
+    $js .= file_get_contents('js/jexcel.core.js') . "\r\n\r\n";
+    $js .= file_get_contents('js/jexcel.formulas.js') . "\r\n\r\n";
+    $js .= file_get_contents('js/jexcel.extensions.js') . "\r\n\r\n";
+    // while (false !== ($entry = readdir($handle))) {
+    //     if ($entry != "." && $entry != ".." && (! isset($modules) || in_array(substr($entry, 0, strpos($entry, '.')), $modules))) {
+    //         $js .= file_get_contents('js/'.$entry) . "\r\n\r\n";
+    //     }
+    // }
     closedir($handle);
 
     $js = "
